@@ -72,11 +72,29 @@ To use the tool you need
 Such files can be downloaded from [figshare](https://figshare.com/articles/AiZynthFinder_a_fast_robust_and_flexible_open-source_software_for_retrosynthetic_planning/12334577) and [here](https://figshare.com/articles/dataset/A_quick_policy_to_filter_reactions_based_on_feasibility_in_AI-guided_retrosynthetic_planning/13280507) or they can be downloaded automatically using
 
 ```
+mkdir my_folder
 download_public_data my_folder
 ```
 
-where ``my_folder`` is the folder that you want download to.
+where ``my_folder`` is the folder that you want to download to (it must already exist).
 This will create a ``config.yml`` file that you can use with either ``aizynthcli`` or ``aizynthapp``.
+
+### Running a prediction
+
+Once you have a ``config.yml``, run a retrosynthesis prediction for a single target molecule by passing its SMILES on the command line:
+
+```
+aizynthcli --config my_folder/config.yml --smiles "COc1cccc(OC(=O)/C=C/c2cc(OC)c(OC)c(OC)c2)c1"
+```
+
+This prints search statistics (e.g. ``is_solved``, ``number_of_steps``) to the terminal and writes the top-ranked routes to ``trees.json``.
+A thin wrapper, ``run.py``, is also provided for the same single-molecule use case:
+
+```
+python run.py --smiles "COc1cccc(OC(=O)/C=C/c2cc(OC)c(OC)c(OC)c2)c1" --config my_folder/config.yml
+```
+
+See [usage.md](usage.md) for more details, including batch predictions and the GUI interface.
 
 ## Development
 

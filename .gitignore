@@ -144,3 +144,7 @@ coverage/
 smiles.txt
 config_local.yml
 devtools/seldon-output-*/
+
+# Downloaded public data and run.py output
+/data/
+trees.json
